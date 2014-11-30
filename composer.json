@@ -12,8 +12,8 @@
 	],
 	"type": "project",
 	"autoload": {
-		"psr-0": {
-			"Thms": "library"
+		"psr-4": {
+			"Framework\\": "app/framework"
 		}
 	},
 	"config": {
@@ -28,10 +28,10 @@
     },
     "extra":{
         "installer-paths":{
-            "content/plugins/themosis-{$name}/": ["themosis/framework"],
-			"content/plugins/{$name}/": ["type:wordpress-plugin"],
-            "content/themes/themosis-{$name}/": ["themosis/theme"],
-            "content/themes/{$name}/": ["type:wordpress-theme"]
+            "src/plugins/themosis-{$name}/": ["themosis/framework"],
+			"src/plugins/{$name}/": ["type:wordpress-plugin"],
+            "src/themes/themosis-{$name}/": ["themosis/theme"],
+            "src/themes/{$name}/": ["type:wordpress-theme"]
         },
         "wordpress-install-dir": "cms"
     }

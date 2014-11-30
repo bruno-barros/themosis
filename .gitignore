@@ -12,8 +12,8 @@ composer.lock
 ### Wordpress
 /cms/*
 !/cms/.gitkeep
-/content/*
-!/content/themes/*
+/src/*
+!/src/themes/*
 
 ### Environment Credentials
 .env.*.php

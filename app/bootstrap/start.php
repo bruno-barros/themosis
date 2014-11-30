@@ -2,7 +2,8 @@
 /*----------------------------------------------------*/
 // Paths
 /*----------------------------------------------------*/
-$root_path = dirname(__DIR__);$root_path = str_replace('\app', '', dirname(__DIR__));
+//$root_path = dirname(__DIR__);
+$root_path = str_replace('\app', '', dirname(__DIR__));
 
 $webroot_path = $root_path;
 
@@ -37,7 +38,7 @@ if (empty($environments) || !is_array($environments))
 // Set environment
 /*----------------------------------------------------*/
 // Define path and the environment locations.
-$env = new Thms\Config\Environment($root_path.DS, $environments);
+$env = new Framework\Config\Environment($root_path.DS, $environments);
 
 /*----------------------------------------------------*/
 // Load .env file
@@ -78,7 +79,7 @@ if (file_exists($config = $root_path.DS.'app/config'.DS.'environments'.DS.$locat
 /*----------------------------------------------------*/
 // Content directory
 /*----------------------------------------------------*/
-define('CONTENT_DIR', 'content');
+define('CONTENT_DIR', 'src');
 define('WP_CONTENT_DIR', $webroot_path.DS.CONTENT_DIR);
 define('WP_CONTENT_URL', WP_HOME.'/'.CONTENT_DIR);
 

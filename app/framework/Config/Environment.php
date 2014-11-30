@@ -1,5 +1,5 @@
 <?php
-namespace Thms\Config;
+namespace Framework\Config;
 
 class Environment
 {
