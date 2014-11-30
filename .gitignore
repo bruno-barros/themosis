@@ -14,6 +14,7 @@ composer.lock
 !/cms/.gitkeep
 /src/*
 !/src/themes/*
+!/src/mu-plugins/*
 
 ### Environment Credentials
 .env.*.php
