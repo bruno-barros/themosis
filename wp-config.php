@@ -8,7 +8,8 @@ defined('DS') ? DS : define('DS', DIRECTORY_SEPARATOR);
 /*----------------------------------------------------*/
 // Bootstrap WordPress
 /*----------------------------------------------------*/
-require_once(dirname(__DIR__).DS.'bootstrap'.DS.'start.php');
+//require_once(dirname(__DIR__).DS.'bootstrap'.DS.'start.php');
+require_once('app/bootstrap'.DS.'start.php');
 
 /*----------------------------------------------------*/
 // Sets up WordPress vars and included files

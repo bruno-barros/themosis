@@ -2,8 +2,10 @@
 /*----------------------------------------------------*/
 // Paths
 /*----------------------------------------------------*/
-$root_path = dirname(__DIR__);
-$webroot_path = $root_path.DS.'htdocs';
+$root_path = dirname(__DIR__);$root_path = str_replace('\app', '', dirname(__DIR__));
+
+$webroot_path = $root_path;
+
 
 /*----------------------------------------------------*/
 // Include composer autoloading
@@ -18,8 +20,9 @@ if (file_exists($autoload = $root_path.DS.'vendor'.DS.'autoload.php'))
 /*----------------------------------------------------*/
 $environments = array();
 
+
 // Return array of environment data
-if (file_exists($file = $root_path.DS.'config'.DS.'environment.php'))
+if (file_exists($file = $root_path.DS.'app/config'.DS.'environment.php'))
 {
 	$environments = require_once($file);
 }
@@ -67,7 +70,7 @@ else
 /*----------------------------------------------------*/
 // Load environment config constants
 /*----------------------------------------------------*/
-if (file_exists($config = $root_path.DS.'config'.DS.'environments'.DS.$location.'.php'))
+if (file_exists($config = $root_path.DS.'app/config'.DS.'environments'.DS.$location.'.php'))
 {
 	require_once($config);
 }
@@ -82,7 +85,7 @@ define('WP_CONTENT_URL', WP_HOME.'/'.CONTENT_DIR);
 /*----------------------------------------------------*/
 // Include shared configuration
 /*----------------------------------------------------*/
-if (file_exists($shared = $root_path.DS.'config'.DS.'shared.php'))
+if (file_exists($shared = $root_path.DS.'app/config'.DS.'shared.php'))
 {
 	require_once($shared);
 }

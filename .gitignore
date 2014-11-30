@@ -10,10 +10,10 @@ composer.lock
 .idea/
 
 ### Wordpress
-/htdocs/cms/*
-!/htdocs/cms/.gitkeep
-/htdocs/content/*
-!/htdocs/content/themes/*
+/cms/*
+!/cms/.gitkeep
+/content/*
+!/content/themes/*
 
 ### Environment Credentials
 .env.*.php

@@ -23,15 +23,16 @@
 		"php": ">=5.4",
 		"johnpbloch/wordpress": ">=4.0",
         "themosis/framework": "1.0.*",
-        "themosis/theme": "1.0.*"
+        "themosis/theme": "1.0.*",
+		"jgrossi/corcel": "dev-master"
     },
     "extra":{
         "installer-paths":{
-            "htdocs/content/plugins/themosis-{$name}/": ["themosis/framework"],
-			"htdocs/content/plugins/{$name}/": ["type:wordpress-plugin"],
-            "htdocs/content/themes/themosis-{$name}/": ["themosis/theme"],
-            "htdocs/content/themes/{$name}/": ["type:wordpress-theme"]
+            "content/plugins/themosis-{$name}/": ["themosis/framework"],
+			"content/plugins/{$name}/": ["type:wordpress-plugin"],
+            "content/themes/themosis-{$name}/": ["themosis/theme"],
+            "content/themes/{$name}/": ["type:wordpress-theme"]
         },
-        "wordpress-install-dir": "htdocs/cms"
+        "wordpress-install-dir": "cms"
     }
 }
