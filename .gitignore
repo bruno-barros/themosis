@@ -12,9 +12,9 @@ composer.lock
 ### Wordpress
 /cms/*
 !/cms/.gitkeep
-/src/*
-!/src/themes/*
-!/src/mu-plugins/*
+/src/plugins
+/src/themes/themosis-theme
+
 
 ### Environment Credentials
 .env.*.php
