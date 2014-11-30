@@ -36,17 +36,12 @@ class Environment
 	 */
 	public function which()
 	{
-		$hostname = gethostname();
-
-		foreach ($this->locations as $location => $name)
+		if(file_exists($this->path .'.env.local.php'))
 		{
-			if ($hostname === $name)
-			{
-				return $location;
-			}
+			return 'local';
 		}
 
-        return '';
+		return 'production';
 	}
 
 	/**

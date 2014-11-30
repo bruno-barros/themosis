@@ -1,6 +1,7 @@
 ### Miscellaneous
 .DS_Store
 Thumbs.db
+.htaccess
 
 ### Composer
 composer.lock
@@ -13,9 +14,11 @@ composer.lock
 /cms/*
 !/cms/.gitkeep
 /src/plugins
+/src/languages
+/src/uploads/*
+!/src/uploads/.gitkeep
 /src/themes/themosis-theme
 
 
 ### Environment Credentials
 .env.*.php
-!.env.local.php
