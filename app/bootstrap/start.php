@@ -1,100 +1,79 @@
 <?php
 /*----------------------------------------------------*/
-// Paths
+// Directory separator
 /*----------------------------------------------------*/
-//$root_path = dirname(__DIR__);
-$root_path = str_replace('\app', '', dirname(__DIR__));
-
-$webroot_path = $root_path;
+defined('DS') ? DS : define('DS', DIRECTORY_SEPARATOR);
 
 
-/*----------------------------------------------------*/
-// Include composer autoloading
-/*----------------------------------------------------*/
-if (file_exists($autoload = $root_path.DS.'vendor'.DS.'autoload.php'))
-{
-	require_once($autoload);
-}
+/*
+|--------------------------------------------------------------------------
+| Create The Application
+|--------------------------------------------------------------------------
+|
+| The first thing we will do is create a new Laravel application instance
+| which serves as the "glue" for all the components of Laravel, and is
+| the IoC container for the system binding all of the various parts.
+|
+*/
 
-/*----------------------------------------------------*/
-// Load environment configuration
-/*----------------------------------------------------*/
-$environments = array();
+$app = new Illuminate\Foundation\Application;
 
+/*
+|--------------------------------------------------------------------------
+| Detect The Application Environment
+|--------------------------------------------------------------------------
+|
+| Laravel takes a dead simple approach to your application environments
+| so you can just specify a machine name for the host that matches a
+| given environment, then we will automatically detect it for you.
+|
+*/
 
-// Return array of environment data
-if (file_exists($file = $root_path.DS.'app/config'.DS.'environment.php'))
-{
-	$environments = require_once($file);
-}
+$env = $app->detectEnvironment(function(){
 
-// Check if there are environment values
-if (empty($environments) || !is_array($environments))
-{
-	printf('<h1>%s</h1>', 'Unable to load environment data. Please define your environments.');
-}
+	$root_path = dirname(dirname(__DIR__));
+	$env = new \Framework\Config\Environment($root_path.DS);
 
-/*----------------------------------------------------*/
-// Set environment
-/*----------------------------------------------------*/
-// Define path and the environment locations.
-$env = new Framework\Config\Environment($root_path.DS, $environments);
+	return $env->which();
+});
 
-/*----------------------------------------------------*/
-// Load .env file
-/*----------------------------------------------------*/
-$location = $env->which();
+/*
+|--------------------------------------------------------------------------
+| Bind Paths
+|--------------------------------------------------------------------------
+|
+| Here we are binding the paths configured in paths.php to the app. You
+| should not be changing these here. If you need to change these you
+| may do so within the paths.php file and they will be bound here.
+|
+*/
 
-if (empty($location)) printf('<h1>%s</h1>', 'Unable to define the environment. Make sure to define your hostname.');
+$app->bindInstallPaths(require __DIR__.'/paths.php');
 
-$loaded = $env->load($location);
+/*
+|--------------------------------------------------------------------------
+| Load The Application
+|--------------------------------------------------------------------------
+|
+| Here we will load this Illuminate application. We will keep this in a
+| separate location so we can isolate the creation of an application
+| from the actual running of the application with a given request.
+|
+*/
 
-if (empty($loaded)) printf('<h1>%s</h1>', 'Unable to locate your environment file.');
+$framework = $app['path.base'].'/../vendor/laravel/framework/src';
 
-/*----------------------------------------------------*/
-// Check required vars.
-/*----------------------------------------------------*/
-$check = $env->check(array('DB_NAME', 'DB_USER', 'DB_PASSWORD', 'DB_HOST', 'WP_HOME', 'WP_SITEURL'), $loaded);
+require $framework.'/Illuminate/Foundation/start.php';
 
-/*----------------------------------------------------*/
-// Populate environment vars
-/*----------------------------------------------------*/
-if ($check)
-{
-	$env->populate($loaded);
-}
-else
-{
-	printf('<h2>%s</h2>', 'Missing environment variables.');
-}
+/*
+|--------------------------------------------------------------------------
+| Return The Application
+|--------------------------------------------------------------------------
+|
+| This script returns the application instance. The instance is given to
+| the calling script so we can separate the building of the instances
+| from the actual running of the application and sending responses.
+|
+*/
 
-/*----------------------------------------------------*/
-// Load environment config constants
-/*----------------------------------------------------*/
-if (file_exists($config = $root_path.DS.'app/config'.DS.'environments'.DS.$location.'.php'))
-{
-	require_once($config);
-}
-
-/*----------------------------------------------------*/
-// Content directory
-/*----------------------------------------------------*/
-define('CONTENT_DIR', 'src');
-define('WP_CONTENT_DIR', $webroot_path.DS.CONTENT_DIR);
-define('WP_CONTENT_URL', WP_HOME.'/'.CONTENT_DIR);
-
-/*----------------------------------------------------*/
-// Include shared configuration
-/*----------------------------------------------------*/
-if (file_exists($shared = $root_path.DS.'app/config'.DS.'shared.php'))
-{
-	require_once($shared);
-}
-
-/*----------------------------------------------------*/
-// Path to WordPress
-/*----------------------------------------------------*/
-if (!defined('ABSPATH'))
-{
-	define('ABSPATH', $webroot_path.DS.'cms'.DS);
-}
+return $app;

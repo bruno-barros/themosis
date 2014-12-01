@@ -13,8 +13,7 @@
 	"type": "project",
 	"autoload": {
 		"psr-4": {
-			"Framework\\": "app/framework",
-			"WpFramework\\": "src/mu-plugins/wp-framework"
+			"Framework\\": "src/framework"
 		}
 	},
 	"config": {
@@ -23,9 +22,9 @@
 	"require": {
 		"php": ">=5.4",
 		"johnpbloch/wordpress": ">=4.0",
-        "themosis/framework": "1.0.*",
-        "themosis/theme": "1.0.*",
-		"jgrossi/corcel": "dev-master"
+		"jgrossi/corcel": "dev-master",
+		"laravel/framework": "4.2.*",
+		"lucatume/wp-routing": "dev-master"
     },
     "extra":{
         "installer-paths":{
@@ -35,5 +34,8 @@
             "src/themes/{$name}/": ["type:wordpress-theme"]
         },
         "wordpress-install-dir": "cms"
-    }
+    },
+
+	"minimum-stability" : "dev",
+	"prefer-stable": true
 }
