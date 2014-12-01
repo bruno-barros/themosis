@@ -21,4 +21,4 @@ composer.lock
 
 
 ### Environment Credentials
-.env.*.php
+/.env.*.php
