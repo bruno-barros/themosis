@@ -9,15 +9,6 @@ $table_prefix = getenv('DB_PREFIX') ? getenv('DB_PREFIX') : 'wp_';
 
 
 /*----------------------------------------------------*/
-// WordPress URLs
-/*----------------------------------------------------*/
-$base_url = 'http' . ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 's' : '') . '://';
-$base_url .= $_SERVER['HTTP_HOST'];
-
-define('WP_HOME', $base_url.'/'.trim(getenv('INSTALLATION_FOLDER'), '/'));
-define('WP_SITEURL', trim(WP_HOME, '/').'/cms');
-
-/*----------------------------------------------------*/
 // WordPress localized language
 /*----------------------------------------------------*/
 /**
@@ -28,7 +19,7 @@ define('WP_SITEURL', trim(WP_HOME, '/').'/cms');
  * de_DE.mo to content/languages and set WPLANG to 'de_DE' to enable German
  * language support.
  */
-define('WPLANG', '');
+define('WPLANG', 'pt_BR');
 
 /*----------------------------------------------------*/
 // Authentication unique keys and salts

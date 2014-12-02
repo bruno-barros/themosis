@@ -76,19 +76,18 @@ class AppIntegration
 		$this->plugin_name = 'app-integration';
 		$this->version     = '1.0.0';
 
-
 		$this->load_dependencies();
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
 
-//		$this->bootstrap();
+		$this->bootstrapApp();
 
 	}
 
 	public static function getInstance()
 	{
-		if(! self::$instance)
+		if (!self::$instance)
 		{
 			self::$instance = new static;
 		}
@@ -96,46 +95,10 @@ class AppIntegration
 		return self::$instance;
 	}
 
-	public function bootstrap()
+	public function bootstrapApp()
 	{
-		/**
-		 * Define all framework paths
-		 * These are real paths, not URLs to the framework files.
-		 * These paths are extensible with the help of WordPress
-		 * filters.
-		 */
-		// Framework paths.
-		$paths = apply_filters('app_framework_paths', array());
 
-		// Plugin base path.
-		$paths['plugin'] = dirname(realpath(__DIR__)).DS;
 
-		// Framework base path.
-		$paths['sys'] = dirname(realpath(__DIR__)).DS.'Core'.DS;
-
-		// Register globally the paths
-		foreach ($paths as $name => $path)
-		{
-			if (!isset($GLOBALS['app_integration_path'][$name]))
-			{
-				$GLOBALS['app_integration_path'][$name] = $path;
-			}
-		}
-//dd(\Framework\Plugins\AppIntegration\app_integration_path('plugin'));
-		// Bootstrap the framework
-		/*----------------------------------------------------*/
-		// Set the application instance.
-		/*----------------------------------------------------*/
-		$app = new \Framework\Plugins\AppIntegration\Core\Application();
-
-		/*----------------------------------------------------*/
-		// Make application available to the facade.
-		/*----------------------------------------------------*/
-		\Framework\Plugins\AppIntegration\Facades\Facade::setFacadeApplication($app);
-//		if (isset($GLOBALS['THFWK_Themosis']))
-//		{
-//			require_once \Framework\Plugins\AppIntegration\app_integration_path('plugin').'bootstrap'.DS.'start.php';
-//		}
 	}
 
 	/**

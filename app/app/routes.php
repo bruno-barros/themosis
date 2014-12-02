@@ -18,7 +18,14 @@ Route::get('/', function()
 
 	$posts = \Corcel\Post::all();
 
-	dd($posts->toArray());
+//	dd($posts->toArray());
 
 	return View::make('hello');
+});
+
+
+Route::get('api', function(){
+
+	return 'Um valor qualquer';
+
 });

@@ -2,9 +2,9 @@
 /*----------------------------------------------------*/
 // Paths
 /*----------------------------------------------------*/
-define('APP_PATH', dirname(__DIR__));
+define('SRC_PATH', dirname(__DIR__));
 
-$root_path = str_replace('\src', '', APP_PATH);
+$root_path = str_replace('\src', '', SRC_PATH);
 
 $webroot_path = $root_path;
 
@@ -16,6 +16,7 @@ if (file_exists($autoload = $root_path.DS.'vendor'.DS.'autoload.php'))
 {
 	require_once($autoload);
 }
+
 
 
 
@@ -39,7 +40,7 @@ if (empty($loaded)) printf('<h1>%s</h1>', 'Unable to locate your environment fil
 /*----------------------------------------------------*/
 // Check required vars.
 /*----------------------------------------------------*/
-$check = $env->check(array('DB_NAME', 'DB_USER', 'DB_PASSWORD', 'DB_HOST', 'INSTALLATION_FOLDER'), $loaded);
+$check = $env->check(array('DB_NAME', 'DB_USER', 'DB_PASSWORD', 'DB_HOST','WP_HOME' ,	'WP_SITEURL', 'INSTALLATION_FOLDER'), $loaded);
 
 /*----------------------------------------------------*/
 // Populate environment vars

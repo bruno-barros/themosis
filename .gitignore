@@ -17,8 +17,14 @@ composer.lock
 /src/languages
 /src/uploads/*
 !/src/uploads/.gitkeep
-/src/themes/themosis-theme
+/src/themes/
+!/src/themes/base
 
+/src/storage/cache/*
+/src/storage/logs/*
+/src/storage/meta/*
+/src/storage/sessions/*
+/src/storage/views/*
 
 ### Environment Credentials
 /.env.*.php

@@ -2,4 +2,6 @@
 /**
  * Load required plugins
  */
-require APP_PATH . '/framework/Plugins/AppIntegration/app-integration.php';
+require SRC_PATH . '/framework/Plugins/AppIntegration/app-integration.php';
+
+require SRC_PATH . '/mu-plugins/cortex-plugin/plugin.php';
